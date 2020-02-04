@@ -83,10 +83,12 @@ if __name__ == '__main__':
     print('Ellapsed time: {}m'.format( (time()-start_time)/60) )
     
     # Plot saved in results folder
-    plt.plot(range(num_epochs), obj_vals, label= "Training loss", color="blue")
-    plt.plot(range(num_epochs), cross_vals, label= "Test loss", color= "green")
-    plt.legend()
-    plt.savefig(args.output_path + 'fig.pdf')
+    fig,ax = plt.subplots()
+    ax.plot(range(num_epochs), obj_vals, label= "Training loss", color="blue")
+    ax.plot(range(num_epochs), cross_vals, label= "Test loss", color= "green")
+    ax.legend()
+    ax.set_ylim([0,1])
+    fig.savefig(args.output_path + 'fig.pdf')
     plt.close()
     
     model.predict_test()
