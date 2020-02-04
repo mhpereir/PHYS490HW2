@@ -9,8 +9,10 @@ class Net(nn.Module):
     '''
     Neural network class.
     Architecture:
-        Two fully-connected layers fc1 and fc2.
-        Two nonlinear activation functions relu and sigmoid.
+        Convolution (16 layers, 14x14)
+        Maxpool     (16 layers, 7x7)
+        Convolution (36 layers, 7x7)
+        Two nonlinear activation functions relu.
     '''
 
     def __init__(self):
