@@ -18,16 +18,16 @@ if __name__ == '__main__':
                         help='hyper params file name (json)')
     parser.add_argument('output_path', metavar='results',
                         help='path to results')
-    parser.add_argument('-v', type=int, default=2, metavar='N',
+    parser.add_argument('v', type=int, default=2, metavar='N',
                         help='verbosity (default: 2)')
-    parser.add_argument('-c', type=int, default=1, metavar='N',
+    parser.add_argument('cuda', type=int, default=1, metavar='N',
                         help='cuda indicator (default: 1 = ON)')
     args = parser.parse_args()
     
     input_file_path  = args.input_path
     params_file_path = args.params_path
     output_file_path = args.output_path
-    cuda_input       = args.c
+    cuda_input       = args.cuda
     
     with open(params_file_path) as paramfile:
         param_file = json.load(paramfile)
@@ -48,10 +48,14 @@ if __name__ == '__main__':
         loss  = loss.cuda()
         
         model.init_data(data,cuda=True)
+        
+        print('Proceeding with GPU.')
     
     else:
         if cuda_input == 1:
             print('No CUDA GPU available. Proceeding with CPU.')
+        else:
+            print('Proceeding with CPU.')
         
         model.init_data(data,cuda=False)
     
@@ -61,7 +65,7 @@ if __name__ == '__main__':
     
     # Training loop
     for epoch in range(1, num_epochs + 1):
-        train_val= model.backprop(loss, optimizer)
+        train_val= model.backprop(loss, optimizer, n_train=param_file['n_mini_batch'])
         obj_vals.append(train_val)
         
         

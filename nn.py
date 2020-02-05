@@ -57,10 +57,9 @@ class Net(nn.Module):
         self.fc1.reset_parameters()
         self.fc2.reset_parameters()
     
-    def backprop(self, loss, optimizer):
+    def backprop(self, loss, optimizer, n_train):
         self.train()
         
-        n_train    = 2000
         args_batch = randint(0, len(self.inputs_train)-n_train)
         
         outputs= self(self.inputs_train[args_batch: args_batch+n_train])        
