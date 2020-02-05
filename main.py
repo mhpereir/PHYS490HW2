@@ -1,7 +1,6 @@
 import json, argparse, torch
 import torch.optim as optim
 import matplotlib.pyplot as plt
-#import torch.nn as nn
 import torch
 
 from time import time
@@ -34,8 +33,6 @@ if __name__ == '__main__':
     
     data = Data(input_file_path,n_test=int(param_file['n_test']))
     model = Net()
-    
-    
     
     # Define an optimizer and the loss function
     optimizer = optim.SGD(model.parameters(), lr=param_file['lr'])
