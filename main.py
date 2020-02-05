@@ -11,15 +11,15 @@ if __name__ == '__main__':
     start_time = time()
     # Command line arguments (taken from tutorial script (lesson 5))
     parser = argparse.ArgumentParser(description='Assignment 2: CNN script')
-    parser.add_argument('input_path', metavar='inputs',
+    parser.add_argument('--input_path', metavar='inputs',
                         help='input data file name (csv)')
-    parser.add_argument('params_path', metavar='hyper params',
+    parser.add_argument('--params_path', metavar='params',
                         help='hyper params file name (json)')
-    parser.add_argument('output_path', metavar='results',
+    parser.add_argument('--output_path', metavar='results',
                         help='path to results')
-    parser.add_argument('v', type=int, default=2, metavar='N',
+    parser.add_argument('-v', type=int, default=2, metavar='N',
                         help='verbosity (default: 2)')
-    parser.add_argument('cuda', type=int, default=1, metavar='N',
+    parser.add_argument('-cuda', type=int, default=1, metavar='N',
                         help='cuda indicator (default: 1 = ON)')
     args = parser.parse_args()
     
